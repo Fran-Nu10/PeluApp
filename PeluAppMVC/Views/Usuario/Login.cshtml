@@ -1,0 +1,25 @@
+﻿@using DTOs.UsuarioDTOs
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model DtoLogin
+
+    <div class="container mt-5">
+        <h2>Iniciar Sesión</h2>
+        <form asp-action="Logeado" asp-controller="Usuario" method="post">
+            <div class="form-group">
+                <label asp-for="Email">Correo Electrónico</label>
+                <input asp-for="Email" class="form-control" placeholder="Ingresa tu correo electrónico" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contrasena">Contraseña</label>
+                <input asp-for="Contrasena" type="password" class="form-control" placeholder="Ingresa tu contraseña" />
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+    </div>
+
+}

@@ -1,0 +1,80 @@
+﻿@using DTOs.UsuarioDTOs
+@model DtoRegistroUsuario
+
+@{
+    ViewData["Title"] = "Registrar Cliente";
+}
+
+<h1>Registrar Cliente</h1>
+
+<h4>DtoRegistroCliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegistrarCliente">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Campo Id oculto -->
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Nombre -->
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Apellido -->
+            <div class="form-group">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input asp-for="Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Contraseña -->
+            <div class="form-group">
+                <label asp-for="Contrasena" class="control-label"></label>
+                <input asp-for="Contrasena" type="password" class="form-control" />
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Teléfono -->
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Email -->
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Campo Rol (Este campo puede ser oculto si se maneja automáticamente en el backend) -->
+            <div class="form-group">
+                <input asp-for="Rol" type="hidden" value="Cliente" />
+                <span asp-validation-for="Rol" class="text-danger"></span>
+            </div>
+
+            <!-- Botón de Submit -->
+            <div class="form-group">
+                <input type="submit" value="Registrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

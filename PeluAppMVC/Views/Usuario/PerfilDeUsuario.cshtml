@@ -1,0 +1,107 @@
+﻿@using DTOs.CitaDTOs
+@using DTOs.UsuarioDTOs
+@model DtoUsuario
+
+@{
+    ViewData["Title"] = "Perfil del Cliente";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Perfil del Cliente</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="card-title">Información Personal</h5>
+                    <hr />
+                    <form asp-action="ActualizarPerfil" method="post">
+                        <!-- ID del usuario (oculto) -->
+                        <input type="hidden" asp-for="Id" />
+                        <!-- Activo (oculto) -->
+                        <input type="hidden" asp-for="Activo" />
+
+                        <!-- Nombre -->
+                        <div class="form-group">
+                            <label asp-for="Nombre" class="form-label">Nombre</label>
+                            <input asp-for="Nombre" class="form-control" readonly />
+                        </div>
+
+                        <!-- Apellido -->
+                        <div class="form-group">
+                            <label asp-for="Apellido" class="form-label">Apellido</label>
+                            <input asp-for="Apellido" class="form-control" readonly />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                            <input asp-for="Email" class="form-control" readonly />
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="form-group">
+                            <label asp-for="Telefono" class="form-label">Teléfono</label>
+                            <input asp-for="Telefono" class="form-control" readonly />
+                        </div>
+
+                        <!-- Fecha de Registro -->
+                        <div class="form-group">
+                            <label asp-for="FechaRegistro" class="form-label">Fecha de Registro</label>
+                            <input asp-for="FechaRegistro" class="form-control" readonly />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    <h5 class="card-title">Gestión de Citas</h5>
+                    <hr />
+                    @{
+                        var citas = ViewData["Citas"] as List<DtoHistorialDeCitas>;
+                    }
+
+                    @if (citas != null && citas.Any())
+                    {
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Fecha y Hora</th>
+                                    <th>Servicio</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var cita in citas)
+                                {
+                                    <tr>
+                                        <td>@cita.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+
+                                        <td>@cita.Servicio.Nombre</td>
+                                       
+                                        <td>@cita.Estado</td>
+                                        <td>
+                                            <form asp-action="GestionarCita" method="post">
+                                                <input type="hidden" name="CitaId" value="@cita.Id" />
+                                                @if (cita.Estado == "Pendiente")
+                                                {
+                                                    <button type="submit" name="accion" value="confirmar" class="btn btn-success btn-sm">Confirmar Cita</button>
+                                                }
+                                                <button type="submit" name="accion" value="cancelar" class="btn btn-danger btn-sm">Cancelar Cita</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No tienes citas programadas.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

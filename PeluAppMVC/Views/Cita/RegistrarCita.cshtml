@@ -1,0 +1,62 @@
+﻿@using DTOs.CitaDTOs
+@using DTOs.EmpleadoDTOs
+@model DTOs.CitaDTOs.DtoCita
+
+@{
+    ViewData["Title"] = "Registrar Cita";
+}
+
+<h1>Registrar Cita</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Administrador" asp-action="HorariosDisponibles" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Select para los empleados -->
+            <div class="form-group">
+                <label for="EmpleadoId">Seleccionar Empleado</label>
+                <select asp-for="EmpleadoId" class="form-control">
+                    @foreach (var empleado in (List<DtoEmpleado>)ViewData["Empleados"])
+                    {
+                        <option value="@empleado.Id">@empleado.Nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="EmpleadoId" class="text-danger"></span>
+            </div>
+
+            <!-- Select para los servicios (permitir múltiples) -->
+            <div class="form-group">
+                <label for="ServicioId">Seleccionar Servicios</label>
+                <select asp-for="ServicioId" class="form-control" >
+                    @foreach (var servicio in (List<DtoCita>)ViewData["Servicios"])
+                    {
+                        <option value="@servicio.Id">@servicio.NombreServicio</option>
+                    }
+                </select>
+                <span asp-validation-for="ServicioId" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha -->
+            <div class="form-group">
+                <label for="FechaHora">Seleccionar Fecha</label>
+                <input asp-for="FechaHora" class="form-control" type="date" />
+                <span asp-validation-for="FechaHora" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Ver Horarios Disponibles" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

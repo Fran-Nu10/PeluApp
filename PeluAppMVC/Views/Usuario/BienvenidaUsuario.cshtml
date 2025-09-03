@@ -1,0 +1,78 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bienvenido a Tu Peluquería</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #F3F4F6;
+                color: #333;
+            }
+
+            .welcome-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                text-align: center;
+                background: linear-gradient(135deg, #f4e1f1, #e0f7f1);
+            }
+
+            h1 {
+                font-size: 3rem;
+                color: #6D4C41;
+                margin-bottom: 10px;
+                font-family: 'Georgia', serif;
+            }
+
+            p {
+                font-size: 1.5rem;
+                color: #444;
+                margin-bottom: 30px;
+            }
+
+            .button {
+                background-color: #F8BBD0;
+                color: #fff;
+                padding: 12px 20px;
+                font-size: 1.2rem;
+                border-radius: 25px;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .button:hover {
+                    background-color: #F48FB1;
+                }
+
+            .icon {
+                font-size: 3rem;
+                color: #6D4C41;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="welcome-container">
+            <div class="icon">
+                <i class="fas fa-scissors"></i> <!-- Aquí puedes usar un icono representativo de peluquería -->
+            </div>
+            <h1>¡Bienvenido a Tu Peluquería!</h1>
+            <p>Nos alegra tenerte con nosotros. ¡Comienza a explorar nuestros servicios de belleza!</p>
+            <a href="/Servicios" class="button">Ver Servicios</a>
+        </div>
+
+    </body>
+    </html>
+}

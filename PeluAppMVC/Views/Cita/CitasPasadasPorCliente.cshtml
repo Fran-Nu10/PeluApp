@@ -1,0 +1,43 @@
+﻿@model IEnumerable<DTOs.CitaDTOs.DtoHistorialDeCitas>
+
+@{
+    ViewData["Title"] = "Citas Pasadas Por Cliente";
+}
+
+<h1>Citas Pasadas Por Cliente</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Cita</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre Cliente</th>
+            <th>Nombre Empleado</th>
+            <th>Nombre Servicio</th>
+            <th>Precio Servicio</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Cliente.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Empleado.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Servicio.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Servicio.Precio)</td>
+                <td>@Html.DisplayFor(modelItem => item.FechaHora)</td>
+                <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-warning" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

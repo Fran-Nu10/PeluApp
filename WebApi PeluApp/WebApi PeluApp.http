@@ -1,0 +1,6 @@
+@WebApi_PeluApp_HostAddress = http://localhost:5245
+
+GET {{WebApi_PeluApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

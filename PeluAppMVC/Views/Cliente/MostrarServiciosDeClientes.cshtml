@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DTOs.CitaDTOs.DtoCita>
+
+@{
+    ViewData["Title"] = "Servicios Asociados a Clientes";
+}
+
+<h1>Servicios Asociados a Clientes</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha y Hora</th>
+            <th>Servicios</th>
+            <th>Estado</th> <!-- Nueva columna para el Estado -->
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cita in Model)
+        {
+            <tr>
+                <!-- Mostrar solo Fecha y Hora -->
+                <td>@cita.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+
+                <!-- Mostrar detalles de los servicios -->
+                <td>
+                    @if (cita.Servicio != null)
+                    {
+                        <div>
+                            <strong>@cita.Servicio.Nombre</strong><br />
+                            <span>@cita.Servicio.Descripcion</span><br />
+                            <span>Precio: $@cita.Servicio.Precio</span><br />
+                            <span>Duración: @cita.Servicio.Duracion</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <span>No se asignó ningún servicio.</span>
+                    }
+                </td>
+
+
+                <!-- Mostrar el Estado -->
+                <td>@cita.Estado</td> <!-- Mostrar el estado de la cita -->
+                <!-- Opciones de acción -->
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = cita.Id }, new { @class = "btn btn-primary btn-sm" })<br />
+                    @Html.ActionLink("Detalles", "Details", new { id = cita.Id }, new { @class = "btn btn-info btn-sm mt-1" })<br />
+                    @Html.ActionLink("Eliminar", "Delete", new { id = cita.Id }, new { @class = "btn btn-danger btn-sm mt-1" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

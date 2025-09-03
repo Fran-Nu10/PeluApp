@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DateTime>
+
+@{
+    ViewData["Title"] = "Horarios Disponibles";
+}
+
+<h1>Horarios Disponibles</h1>
+
+@if (!Model.Any())
+{
+    <p>No hay horarios disponibles para esta fecha.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Horario</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var horario in Model)
+            {
+                <tr>
+                    <td>@horario.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        <form asp-controller="Cita" asp-action="RegistrarCitaFinal" method="post">
+                            <!-- Horario seleccionado -->
+                            <input type="hidden" name="dtoCita.FechaHora" value="@horario.ToString("o")" />
+
+                            <!-- ID del empleado -->
+                            <input type="hidden" name="EmpleadoId" value="@ViewData["EmpleadoId"]" />
+
+                            <!-- IDs de los servicios -->
+                            @foreach (var servicioId in (List<int>)ViewData["ServicioId"])
+                            {
+                                <input type="hidden" name="ServicioId" value="@servicioId" />
+                            }
+
+                            <!-- Botón de agendar -->
+                            <button type="submit" class="btn btn-primary">Agendar Cita</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

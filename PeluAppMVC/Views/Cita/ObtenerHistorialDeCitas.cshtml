@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DTOs.CitaDTOs.DtoHistorialDeCitas>
+
+@{
+    ViewData["Title"] = "ObtenerHistorialDeCitas";
+}
+
+<h1>ObtenerHistorialDeCitas</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaHora)
+            </th>
+            <th>
+                Nombre Cliente
+            </th>
+            <th>
+                Nombre Empleado
+            </th>
+            <th>
+                Nombre Servicio
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaHora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nombre) <!-- Mostrar el nombre del cliente -->
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empleado.Nombre) <!-- Mostrar el nombre del empleado -->
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Servicio.Nombre) <!-- Mostrar el nombre del servicio -->
+                </td>
+              
+               
+            </tr>
+        }
+    </tbody>
+</table>
