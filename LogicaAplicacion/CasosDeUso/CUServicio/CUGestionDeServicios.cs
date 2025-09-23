@@ -74,5 +74,12 @@ namespace LogicaAplicacion.CasosDeUso.CUServicio
         {
             _RepoServicio.Remove(dto.Id);
         }
+
+        public void AgregarServicioAPI(DtoServicioAPI dto)
+        {
+            Servicio ser = MapperServicio.DeServicioADtoAPI(dto);
+
+            _RepoServicio.Add(ser);
+        }
     }
 }

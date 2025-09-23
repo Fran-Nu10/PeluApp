@@ -18,12 +18,12 @@ namespace LogicaAplicacion.CasosDeUso.CUEmpleado
 
         public void RegistrarEmpleado(DtoEmpleado dto)
         {
-           
+
 
             ValidarEmpleado(dto);
 
             Empleado empleado = MapperEmpleado.DeDtoAEmpleado(dto);
-           
+
             // Verificar si el empleado ya existe
             Empleado empleadoExistente = _RepoEmpleado.FindByIdEmpleado(empleado.Id);
 
@@ -78,6 +78,38 @@ namespace LogicaAplicacion.CasosDeUso.CUEmpleado
             return dto;
         }
 
+
+
+
+
+        public DtoEmpleado EncontrarEmpleadoSimple(int id)
+        {
+            Empleado empleado = _RepoEmpleado.FindById(id);
+            DtoEmpleado dto = MapperEmpleado.DeEmpleadoADto(empleado);
+            return dto;
+
+        }
+
+
+
+
+
+
+        public void RegistrarEmpleadoSimple(DtoEmpleadoSimple dto)
+        {
+            ValidarEmpleadoSimple(dto);
+            Empleado empleado = MapperEmpleado.DeDtoAEmpleadoSimple(dto);
+            // Verificar si el empleado ya existe
+            Empleado empleadoExistente = _RepoEmpleado.FindByIdEmpleado(empleado.Id);
+            if (empleadoExistente != null)
+            {
+                throw new Exception("El empleado ya existe.");
+            }
+            _RepoEmpleado.Add(empleado);
+        }
+
+
+
         public void ValidarEmpleado(DtoEmpleado empleado)
         {
             // Validación del nombre
@@ -106,6 +138,59 @@ namespace LogicaAplicacion.CasosDeUso.CUEmpleado
                 throw new Exception("El salario debe ser un valor positivo.");
             }
 
+        }
+
+
+        public void ValidarEmpleadoSimple(DtoEmpleadoSimple empleado)
+        {
+            // Validación del nombre
+            if (string.IsNullOrWhiteSpace(empleado.Nombre))
+            {
+                throw new Exception("El nombre no puede estar vacío.");
+            }
+            // Validación del apellido
+            if (string.IsNullOrWhiteSpace(empleado.Apellido))
+            {
+                throw new Exception("El apellido no puede estar vacío.");
+            }
+            // Validación del cargo
+            if (string.IsNullOrWhiteSpace(empleado.Cargo))
+            {
+                throw new Exception("El cargo no puede estar vacío.");
+            }
+            // Validación del teléfono
+            if (string.IsNullOrWhiteSpace(empleado.Telefono) || empleado.Telefono.Length < 6)
+            {
+                throw new Exception("El teléfono debe ser un número válido y tener al menos 6 dígitos.");
+            }
+            // Validación del salario
+            if (empleado.Salario <= 0)
+            {
+                throw new Exception("El salario debe ser un valor positivo.");
+            }
+        }
+
+        public void AcutualizarEmpleado(int id,DtoEmpleadoSimple dto)
+        {
+            Empleado empleado= _RepoEmpleado.FindById(id);
+
+            empleado.Nombre = dto.Nombre;
+            empleado.Apellido = dto.Apellido;
+            empleado.Cargo = dto.Cargo;
+            empleado.Telefono = dto.Telefono;
+            empleado.Salario = dto.Salario;
+            empleado.DiasDisponibles = dto.DiasDisponibles ?? new();
+            empleado.HoraInicio = dto.HoraInicio;
+            empleado.HoraFin = dto.HoraFin;
+            empleado.Rol = dto.Rol;
+
+            if (empleado == null)
+            {
+                throw new Exception("El empleado no existe.");
+
+            }
+
+            _RepoEmpleado.Update(empleado);
         }
     }
 }

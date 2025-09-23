@@ -19,7 +19,8 @@ namespace LogicaAccesoDatos.RepositoriosEF
         }
         public void Add(Empleado nuevo)
         {
-           _context.Empleados.Add(nuevo);
+            _context.Empleados.Add(nuevo);
+            _context.SaveChanges();
         }
 
         public List<DateTime> DevolverHorariosLibres(List<DateTime> horariosOcupados, List<DateTime>horariosPosibkles)
@@ -38,7 +39,10 @@ namespace LogicaAccesoDatos.RepositoriosEF
                 .ToList();
         }
 
-
+        //public Empleado FindByEmail(string email)
+        //{
+        //    return _context.Empleados.SingleOrDefault(e => e.e== email);
+        //}
         public List<Empleado> FindAll()
         {
             return _context.Empleados.ToList();
@@ -61,7 +65,9 @@ namespace LogicaAccesoDatos.RepositoriosEF
 
         public void Update(Empleado obj)
         {
-            throw new NotImplementedException();
+            _context.Empleados.Update(obj);
+            _context.SaveChanges();
+
         }
     }
 }

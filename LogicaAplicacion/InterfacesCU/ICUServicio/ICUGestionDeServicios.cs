@@ -11,7 +11,9 @@ namespace LogicaAplicacion.InterfacesCU.ICUServicio
     public interface ICUGestionDeServicios
     {
         List<DtoCita> TodosLosServicios();
-        void AgregarServicio(DtoServicio dto);
+        void AgregarServicio(DtoServicio dto)
+        void AgregarServicioAPI(DtoServicioAPI dto);
+
 
         List<DtoServicio> TodosLosServiciosDtoServicio();
 

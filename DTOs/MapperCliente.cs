@@ -26,12 +26,12 @@ namespace DTOs
             return cliente;
         }
 
-        public static Cliente DeDtoACliente(DtoNuevoCliente dto)
+        public static Cliente DeDtoACliente(DtoCrearCliente dto)
         {
             Cliente Nuevo=new Cliente();
             Nuevo.Nombre = dto.Nombre;
             Nuevo.Apellido = dto.Apellido;
-            Nuevo.constrasenia = dto.constrasenia;
+            Nuevo.constrasenia = dto.Constrasenia;
             Nuevo.Telefono = dto.Telefono;
             Nuevo.FechaCreacion = dto.FechaCreacion;
             Nuevo.Email = dto.Email;
@@ -76,13 +76,13 @@ namespace DTOs
 
 
 
-        public static List<DtoNuevoCliente> DeListaClienteAListaDto(List<Cliente> lista) 
+        public static List<DtoListarCliente> DeListaClienteAListaDto(List<Cliente> lista) 
         { 
-        List<DtoNuevoCliente>ListaCliente=new List<DtoNuevoCliente>();
+        List<DtoListarCliente> ListaCliente=new List<DtoListarCliente>();
 
             foreach (Cliente c in lista) 
             {
-                ListaCliente.Add(new DtoNuevoCliente(c.Id,c.Nombre, c.Apellido, c.Telefono, c.Email, c.constrasenia, c.FechaCreacion));
+                ListaCliente.Add(new DtoListarCliente(c.Id,c.Nombre, c.Apellido, c.Telefono, c.Email, c.constrasenia, c.FechaCreacion));
             }
             
             return ListaCliente;
@@ -90,6 +90,8 @@ namespace DTOs
            
         
         }
+
+       
 
     }
 }

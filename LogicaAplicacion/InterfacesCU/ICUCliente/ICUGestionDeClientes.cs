@@ -12,7 +12,7 @@ namespace LogicaAplicacion.InterfacesCU.ICUCliente
     public interface ICUGestionDeClientes
     {
         public void CrearCliente(DtoCrearCliente dtoCli);
-        List<DtoNuevoCliente> TodosLosClientes();
+        List<DtoListarCliente> TodosLosClientes();
 
         DtoClienteAEditar GetEditar(int id);
 

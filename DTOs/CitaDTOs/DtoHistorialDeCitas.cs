@@ -12,7 +12,7 @@ namespace DTOs.CitaDTOs
 {
     public class DtoHistorialDeCitas
     {
-        public int Id { get; set; } // Identificador único
+        public int Id { get; set; } // Identificador único  
         public DateTime FechaHora { get; set; } // Fecha y hora de la cita
         public int ClienteId { get; set; } // FK del cliente asociado
         public DtoListarCliente Cliente { get; set; } // Relación con Cliente

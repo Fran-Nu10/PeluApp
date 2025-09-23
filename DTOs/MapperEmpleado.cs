@@ -11,11 +11,26 @@ namespace DTOs
 {
     public class MapperEmpleado
     {
+
+
+        public static Empleado DeDtoAEmpleadoSimple(DtoEmpleadoSimple Dto)
+        {
+            Empleado E = new Empleado();
+
+            E.Nombre = Dto.Nombre;
+            E.Apellido = Dto.Apellido;
+            E.Telefono = Dto.Telefono;
+            E.Salario = Dto.Salario;
+            E.Cargo = Dto.Cargo;
+            E.Rol = Dto.Rol;
+            E.DiasDisponibles = Dto.DiasDisponibles;
+            return E;
+        }
         public static DtoEmpleado DeEmpleadoADto(Empleado E)
         {
             DtoEmpleado Dto = new DtoEmpleado();
 
-            Dto.Id = E.Id;
+           
             Dto.Nombre = E.Nombre;
             Dto.Apellido = E.Apellido;
             Dto.Telefono = E.Telefono;
@@ -28,7 +43,7 @@ namespace DTOs
         public static Empleado DeDtoAEmpleado(DtoEmpleado Dto)
         {
             Empleado E = new Empleado();
-            E.Id = Dto.Id;
+           
             E.Nombre = Dto.Nombre;
             E.Apellido = Dto.Apellido;
             E.Telefono = Dto.Telefono;
@@ -45,7 +60,7 @@ namespace DTOs
             foreach (Empleado empleado in empleados)
             {
                 // Agregar cada DtoServicio a la empleado
-                DtoEmpleados.Add(new DtoEmpleado(empleado.Id,empleado.Nombre, empleado.Apellido, empleado.Cargo, empleado.Telefono, empleado.Salario));
+                DtoEmpleados.Add(new DtoEmpleado(empleado.Nombre, empleado.Apellido, empleado.Cargo, empleado.Telefono, empleado.Salario));
             }
 
             // Devolver la lista completa de DtoServicio

@@ -20,7 +20,7 @@ namespace LogicaAplicacion.CasosDeUso.CUAdministrador
         {
             _RepoCliente = _RepositorioCliente;
         }
-        public void CrearCliente(DtoNuevoCliente dtoCli)
+        public void CrearCliente(DtoCrearCliente dtoCli)
         {
             ValidarCliente(dtoCli);
 
@@ -43,11 +43,11 @@ namespace LogicaAplicacion.CasosDeUso.CUAdministrador
         }
 
 
-        public List<DtoNuevoCliente> TodosLosClientes()
+        public List<DtoListarCliente> TodosLosClientes()
         {
             List<Cliente>Clientes=_RepoCliente.FindAll();
 
-            List<DtoNuevoCliente> DtoClientes=MapperCliente.DeListaClienteAListaDto(Clientes);
+            List<DtoListarCliente> DtoClientes=MapperCliente.DeListaClienteAListaDto(Clientes);
 
             return DtoClientes;
         }
@@ -104,7 +104,7 @@ namespace LogicaAplicacion.CasosDeUso.CUAdministrador
         }
 
 
-        public void ValidarCliente(DtoNuevoCliente cliente)
+        public void ValidarCliente(DtoCrearCliente cliente)
         {
             if (cliente == null)
             {
@@ -131,7 +131,7 @@ namespace LogicaAplicacion.CasosDeUso.CUAdministrador
                 throw new ArgumentException("El email debe ser válido y contener un '@'.");
             }
 
-            if (string.IsNullOrWhiteSpace(cliente.constrasenia) || cliente.constrasenia.Length < 6)
+            if (string.IsNullOrWhiteSpace(cliente.Constrasenia) || cliente.Constrasenia.Length < 6)
             {
                 throw new ArgumentException("La contraseña debe tener al menos 6 caracteres.");
             }

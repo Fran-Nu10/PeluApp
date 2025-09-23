@@ -15,29 +15,98 @@ namespace WebApi_PeluApp.Controllers
         }
 
         [HttpPost("Registrar-Empleado")]
-        public IActionResult RegistrarEmp(DtoEmpleado dto)
+        public IActionResult RegistrarEmp([FromBody] DtoEmpleadoSimple dto)
         {
             try
             {
-                _CUGestionDeEmpleados.RegistrarEmpleado(dto);
-                return new JsonResult("Empleado registrado correctamente");
+                _CUGestionDeEmpleados.RegistrarEmpleadoSimple(dto);
+                
+                return Ok("Empleado registrado correctamente");
+            }
+            catch (Exception ex)
+            {
+               return BadRequest("Error al registrar");
+            }
+        }
+
+
+
+
+        // GET: Empleado/Obtener-Empleado/{id}
+        [HttpGet("Obtener-Empleado/{id}")]
+        public IActionResult ObtenerEmpleado(int id)
+        {
+            try
+            {
+                var empleado = _CUGestionDeEmpleados.EncontrarEmpleadoSimple(id);
+                if (empleado == null)
+                {
+                    return new JsonResult(new
+                    {
+                        Message = "Empleado no encontrado"
+                    })
+                    {
+                        StatusCode = 404
+                    };
+                }
+                return new JsonResult(empleado, new {Mesagge="Exito"})
+                {
+                    StatusCode = 200
+                };
             }
             catch (Exception ex)
             {
                 return new JsonResult(new
                 {
-                    Message = $"Error al registrar empleado: {ex.Message}"
+                    Message = $"Error al obtener empleado: {ex.Message}"
                 })
                 {
-                    StatusCode = 400
+                    StatusCode = 500
                 };
             }
         }
 
-        // GET: Empleado
-        public ActionResult Index()
+        [HttpPut("Actualizar-Empleado/{id}")]
+        public async Task<ActionResult<DtoEmpleadoSimple>> ActualizarEmpleado([FromRoute] int id, DtoEmpleadoSimple dto)
         {
-            return View();
+            try
+            {
+                if (dto == null)
+                {
+                    return new JsonResult(new
+                    {
+                        Mesagge = "El objeto empleado no puede ser nulo"
+
+                    })
+                    {
+                        StatusCode = 400
+                    };
+
+                }
+                _CUGestionDeEmpleados.AcutualizarEmpleado(id,dto);
+                return new JsonResult(new
+                {
+                    Mesagge = "Empleado actualizado correctamente"
+                })
+                {
+                    StatusCode = 200
+                };
+
+            }
+            catch (Exception ex) 
+            {
+                return new JsonResult(new{
+                    Mesagge ="Error al actualizar empleado: {ex.Message}"})
+
+
+
+            { 
+                 
+                StatusCode = 500
+            };
+
+
+            }
         }
 
         // GET: Empleado/Details/5

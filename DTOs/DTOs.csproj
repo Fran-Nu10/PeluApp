@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ServicioDTOs\NewFolder\**" />
+    <EmbeddedResource Remove="ServicioDTOs\NewFolder\**" />
+    <None Remove="ServicioDTOs\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ControlDeCambiosDTOs\" />
     <Folder Include="AdministradorDTOs\" />
   </ItemGroup>

@@ -23,9 +23,9 @@ namespace DTOs.EmpleadoDTOs
 
         public DtoEmpleado() { }
 
-        public DtoEmpleado( int id,string nombre, string apellido, string cargo, string telefono, decimal salario)
+        public DtoEmpleado(string nombre, string apellido, string cargo, string telefono, decimal salario)
         {
-            Id= id;
+            
             Nombre = nombre;
             Apellido = apellido;
             Cargo = cargo;

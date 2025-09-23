@@ -68,6 +68,18 @@ namespace DTOs
 
             return s;
         }
+
+        public static Servicio DeServicioADtoAPI(DtoServicioAPI E)
+        {
+            Servicio s = new Servicio();
+
+            s.Nombre = E.Nombre;
+            s.Descripcion = E.Descripcion;
+            s.Precio = E.Precio;
+            s.Duracion = E.Duracion;
+
+            return s;
+        }
         public static DtoServicio DeServicioADto1(Servicio E)
         {
             DtoServicio s = new DtoServicio();

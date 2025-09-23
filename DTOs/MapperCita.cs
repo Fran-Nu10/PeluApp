@@ -15,7 +15,7 @@ namespace DTOs
     {
 
 
-        public static List<Cita> 
+      
         public static List<DtoCita> DeListaCitasADtoServicios(List<Cita>Citas)
         {
             List<DtoCita>dto=new List<DtoCita>();

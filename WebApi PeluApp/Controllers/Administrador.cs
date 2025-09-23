@@ -47,12 +47,12 @@ namespace WebApi_PeluApp.Controllers
 
         // Endpoint para crear un nuevo servicio
         [HttpPost("crear-servicio")]
-        public IActionResult CrearServicio([FromBody] DtoServicio dto)
+        public IActionResult CrearServicio([FromBody] DtoServicioAPI dto)
         {
             try
             {
-                _CUGestionDeServicios.AgregarServicio(dto);
-                return CreatedAtAction(nameof(MostrarServicios), new { id = dto.Id }, dto); // Devuelve el servicio creado
+                _CUGestionDeServicios.AgregarServicioAPI(dto);
+                return Ok("Se creo con exito");
             }
             catch (Exception ex)
             {

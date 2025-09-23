@@ -10,6 +10,7 @@ namespace DTOs.ClienteDTOs
     public class DtoListarCliente
     {
       
+     
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int Telefono { get; set; }
@@ -17,8 +18,9 @@ namespace DTOs.ClienteDTOs
         public string constrasenia { get; set; }
         public DateTime FechaCreacion { get; set; }
 
-        public DtoListarCliente(string nombre, string apellido, int telefono, string email, string Constrasenia, DateTime fechaCreacion)
+        public DtoListarCliente(int id,string nombre, string apellido, int telefono, string email, string Constrasenia, DateTime fechaCreacion)
         {
+            int Id = id;
             Nombre = nombre;
             Apellido = apellido;
             Telefono = telefono;
