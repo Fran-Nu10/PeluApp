@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaNegocio.InterfacesRepositorios
+namespace LogicaNegocio.InterfacesRepositorios.InterfacesMVC
 {
-    public interface IRepositorioCliente:IRepositorio<Cliente>
+    public interface IRepositorioCliente : IRepositorio<Cliente>    
     {
         int FindByIdUsuActual(Usuario usuario);
         Cliente FindByEmail(string email);

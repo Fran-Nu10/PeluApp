@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="InterfacesRepositorios\NewFolder1\**" />
+    <Compile Remove="InterfacesRepositorios\NewFolder2\**" />
+    <EmbeddedResource Remove="InterfacesRepositorios\NewFolder1\**" />
+    <EmbeddedResource Remove="InterfacesRepositorios\NewFolder2\**" />
+    <None Remove="InterfacesRepositorios\NewFolder1\**" />
+    <None Remove="InterfacesRepositorios\NewFolder2\**" />
+  </ItemGroup>
+
 </Project>

@@ -3,7 +3,7 @@ using DTOs.CitaDTOs;
 using DTOs.ServicioDTOs;
 using LogicaAplicacion.InterfacesCU.ICUCliente;
 using LogicaNegocio.Entidades;
-using LogicaNegocio.InterfacesRepositorios;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
 using System;
 using System.Collections.Generic;
 using System.Linq;

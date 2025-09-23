@@ -1,4 +1,4 @@
-    using LogicaAccesoDatos.RepositoriosEF;
+using LogicaAccesoDatos.RepositoriosEF;
 
 using LogicaAplicacion.CasosDeUso.CUAdministrador;
 
@@ -12,7 +12,7 @@ using LogicaAplicacion.InterfacesCU.ICUCliente;
 using LogicaAplicacion.InterfacesCU.ICUEmpleado;
 using LogicaAplicacion.InterfacesCU.ICUServicio;
 using LogicaAplicacion.InterfacesCU.ICUUsuario;
-using LogicaNegocio.InterfacesRepositorios;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
 using Microsoft.EntityFrameworkCore;
 
 namespace PeluAppMVC

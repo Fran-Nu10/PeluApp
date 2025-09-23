@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LogicaAplicacion.InterfacesCU.ICUCliente;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +10,35 @@ namespace WebApi_PeluApp.Controllers
     [ApiController]
     public class Cliente : ControllerBase
     {
-        // GET: api/<Clientes>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private ICUGestionDeClientes _cu;
+
+        public Cliente(ICUGestionDeClientes cUGestionDeClientes)
         {
-            return new string[] { "value1", "value2" };
+            this._cu = cUGestionDeClientes;
+        }
+
+
+
+        // POST /api/clientes
+        [HttpPost]
+        public async Task<ActionResult<DtoCrearCliente>> Crear([FromBody] DtoCrearCliente dto, CancellationToken ct)
+        {
+            if (dto is null) return BadRequest("Body requerido.");
+
+            try
+            {
+                var nuevoId = await _cu.CrearClienteAPI(dto, ct);
+                var creado = await _cu.FindByIdAsync(nuevoId, ct);
+                return CreatedAtAction(nameof(Get), new { id = nuevoId }, creado);
+            }
+            catch (Exception ex) // si tu CU valida email único
+            {
+                return Conflict(new { message = ex.Message });
+            }
+            //catch (Exception ex)
+            //{
+            //    return BadRequest(new { message = ex.Message, errors = ex.Errors });
+            //}
         }
 
         // GET api/<Clientes>/5

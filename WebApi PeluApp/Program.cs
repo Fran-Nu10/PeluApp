@@ -7,11 +7,14 @@ using LogicaAplicacion.CasosDeUso.CUServicio;
 using LogicaAplicacion.InterfacesCU.ICUAdministrador;
 using LogicaAplicacion.InterfacesCU.ICUCliente;
 using LogicaAplicacion.InterfacesCU.ICUEmpleado;
-using LogicaNegocio.InterfacesRepositorios;
 using LogicaAccesoDatos.RepositoriosEF;
 using Microsoft.EntityFrameworkCore;
 using LogicaAplicacion.InterfacesCU.ICUServicio;
 using ICUGestionDeServicios = LogicaAplicacion.InterfacesCU.ICUServicio.ICUGestionDeServicios;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
+using LogicaNegocio.InterfacesRepositorios.InterfacesAPI;
+using LogicaAccesoDatos.RepositoriosEF_API;
+using LogicaAccesoDatos;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,12 +37,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddScoped<IRepositorioCliente, RepositorioCliente>();
 builder.Services.AddScoped<IRepositorioServicio, RepositorioServicio>();
 builder.Services.AddScoped<IRepositorioEmpleado, RepositorioEmpleado>();
+builder.Services.AddScoped<IRepositorioClienteAPI, RepositorioClienteAPI>();
 
 
 // 🔹 REGISTRAR CASOS DE USO (INTERFACES -> IMPLEMENTACIONES)
 builder.Services.AddScoped<ICUGestionDeClientes, CUGestionDeClientes>();
 builder.Services.AddScoped<ICUGestionDeServicios, CUGestionDeServicios>();
 builder.Services.AddScoped<ICUGestionDeEmpleados, CUGestionDeEmpleados>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

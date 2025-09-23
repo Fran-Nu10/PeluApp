@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using LogicaNegocio.Entidades;
 using DTOs;
-using LogicaNegocio.InterfacesRepositorios;
 using DTOs.UsuarioDTOs;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
 
 namespace LogicaAplicacion.CasosDeUso.CUCliente
 {

@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaNegocio.InterfacesRepositorios
+namespace LogicaNegocio.InterfacesRepositorios.InterfacesMVC
 {
-    public interface IRepositorioServicio:IRepositorio<Servicio>
+    public interface IRepositorioAdministrador : IRepositorio<Administrador>
     {
-         List<Servicio> FindByIdList(List<int> Serv);
     }
 }

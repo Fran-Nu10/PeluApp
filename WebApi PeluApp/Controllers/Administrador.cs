@@ -53,7 +53,7 @@ namespace WebApi_PeluApp.Controllers
             {
                 _CUGestionDeServicios.AgregarServicioAPI(dto);
                 return Ok("Se creo con exito");
-            }
+            }   
             catch (Exception ex)
             {
                 return BadRequest($"Error: {ex.Message}");

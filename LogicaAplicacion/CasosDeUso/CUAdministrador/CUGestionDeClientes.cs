@@ -1,24 +1,23 @@
 ﻿using DTOs;
 using DTOs.ClienteDTOs;
-using DTOs.UsuarioDTOs;
+using LogicaAccesoDatos;
 using LogicaAplicacion.InterfacesCU.ICUCliente;
 using LogicaNegocio.Entidades;
-using LogicaNegocio.InterfacesRepositorios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using LogicaNegocio.InterfacesRepositorios.InterfacesAPI;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
 namespace LogicaAplicacion.CasosDeUso.CUAdministrador
 {
     public class CUGestionDeClientes : ICUGestionDeClientes
     {
         private IRepositorioCliente _RepoCliente;
+        private IRepositorioClienteAPI _RepoClienteAPI;
+        private IUnitOfWork _unitOfWork;
 
-        public CUGestionDeClientes(IRepositorioCliente _RepositorioCliente)
+        public CUGestionDeClientes(IRepositorioCliente _RepositorioCliente,IRepositorioClienteAPI a,IUnitOfWork U)
         {
             _RepoCliente = _RepositorioCliente;
+            _RepoClienteAPI = a;
+            _unitOfWork = U;
         }
         public void CrearCliente(DtoCrearCliente dtoCli)
         {
@@ -143,7 +142,56 @@ namespace LogicaAplicacion.CasosDeUso.CUAdministrador
 
         }
 
-       
+
+
+                            //CASOS DE USO ASYNC PARA LA API
+
+        public async Task<int> CrearClienteAPI(DtoCrearCliente dto,CancellationToken ct)
+        {
+            ValidarCliente(dto);
+
+            var entity = MapperCliente.DeDtoACliente(dto);
+
+            await _RepoClienteAPI.AddAsync(entity,ct);
+            await _unitOfWork.SaveChangesAsync(); // decide el CU cuándo confirmar
+
+            return entity.Id;
+        }
+
+        public Task<Cliente?> FindByIdAsync(int id, CancellationToken ct)
+        {
+            var entity = _RepoClienteAPI.FindByIdAsync(id, ct);
+            if(entity == null)
+            {
+                throw new Exception("El Cliente no es válido o no existe.");
+            }
+            return entity;
+        }
+
+        public Task<Cliente?> FindByEmailAsync(string email, CancellationToken ct)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> FindIdByEmailAsync(string email, CancellationToken ct)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExistsByEmailAsync(string email, CancellationToken ct)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Cliente entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveByIdAsync(int id, CancellationToken ct)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 ﻿using LogicaNegocio.Entidades;
-using LogicaNegocio.InterfacesRepositorios;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

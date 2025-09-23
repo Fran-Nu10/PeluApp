@@ -3,7 +3,7 @@ using DTOs.CitaDTOs;
 using DTOs.EmpleadoDTOs;
 using LogicaAplicacion.InterfacesCU.ICUEmpleado;
 using LogicaNegocio.Entidades;
-using LogicaNegocio.InterfacesRepositorios;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
 
 namespace LogicaAplicacion.CasosDeUso.CUEmpleado
 {

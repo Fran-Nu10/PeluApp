@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LogicaNegocio.InterfacesRepositorios;
 using LogicaAplicacion.InterfacesCU.ICUCita;
+using LogicaNegocio.InterfacesRepositorios.InterfacesMVC;
 
 namespace LogicaAplicacion.CasosDeUso.CUCita
 {
