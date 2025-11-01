@@ -45,18 +45,21 @@ builder.Services.AddScoped<ICUGestionDeClientes, CUGestionDeClientes>();
 builder.Services.AddScoped<ICUGestionDeServicios, CUGestionDeServicios>();
 builder.Services.AddScoped<ICUGestionDeEmpleados, CUGestionDeEmpleados>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
 var app = builder.Build();
 
-// Configurar middleware
-if (app.Environment.IsDevelopment())
+// === Middleware global ===
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "PeluApp API v1");
+    c.RoutePrefix = "swagger"; // Swagger visible en /swagger
+});
 
-app.UseHttpsRedirection();
+
+app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers(); // Asegurar que responde a controladores
+
+app.MapControllers();
+app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
 
 app.Run();

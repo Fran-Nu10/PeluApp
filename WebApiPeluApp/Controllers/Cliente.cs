@@ -48,11 +48,6 @@ namespace WebApi_PeluApp.Controllers
             return "value";
         }
 
-        // POST api/<Clientes>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
 
         // PUT api/<Clientes>/5
         [HttpPut("{id}")]

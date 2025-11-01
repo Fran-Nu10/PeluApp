@@ -4,7 +4,9 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>WebApi_PeluApp</RootNamespace>
+    <RootNamespace>WebApiPeluApp</RootNamespace>
+    <UserSecretsId>ad66db7f-8a1f-482e-9c99-72c6e2d89712</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +15,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
@@ -20,7 +23,15 @@
     <ProjectReference Include="..\LogicaAccesoDatos\LogicaAccesoDatos.csproj" />
     <ProjectReference Include="..\LogicaAplicacion\LogicaAplicacion.csproj" />
     <ProjectReference Include="..\LogicaNegocio\LogicaNegocio.csproj" />
-    <ProjectReference Include="..\PeluAppMVC\PeluAppMVC.csproj" />
+   
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\franc\OneDrive\Desktop\PeluApp\WebApiPeluApp\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\franc\OneDrive\Desktop\PeluApp\WebApiPeluApp\.editorconfig" />
   </ItemGroup>
 
 </Project>
