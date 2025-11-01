@@ -61,5 +61,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
-
+app.MapGet("/", () =>
+    Results.Ok("✅ PeluApp API is running. Go to /swagger for documentation.")
+);
 app.Run();
