@@ -159,5 +159,5 @@ Railway	Docker	Swagger
 Franco Núñez
 💼 Desarrollador Backend (.NET, C#, SQL, Docker)
 📍 Uruguay
-📫 LinkedIn
- • GitHub
+📫 LinkedIn : https://www.linkedin.com/in/franconunezdev/
+
